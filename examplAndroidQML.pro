@@ -31,6 +31,14 @@ symbian:TARGET.CAPABILITY += NetworkServices
 
 # The .cpp file which was generated for your project. Feel free to hack it.
 SOURCES += main.cpp
+# assuming you want to deploy qml/androinQML/main.qml file, you need to add the flowing lines to your .pro/.pri file(s)
+delployment.files=qml/examplAndroidQML/main.qml
+android { #define an android block
+    delployment.path=/assets/qml/examplAndroidQML/ #all assets must go to "/assets" folder of your android package
+} else : maemo5 { #other platforms
+    delployment.path=/opt/$${TARGET}
+}
+INSTALLS += delployment
 
 # Please do not modify the following two lines. Required for deployment.
 include(qmlapplicationviewer/qmlapplicationviewer.pri)
